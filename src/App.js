@@ -1,24 +1,29 @@
 import { useEffect, useReducer } from 'react';
-import userAction from './actions/userActions';
+import InnerApp from './InnerApp';
 import userReducer from './reducers/userReducer';
+import UserContext from './contexts/UserContext';
 
 function App() {
   const [state, dispatch] = useReducer(userReducer, { username: "", user_id: "" })
 
-  const setUser = () => {
-    dispatch(userAction.SET_USER({username: "chrisss", user_id: 420}))
-  }
-  const removeUser = () => {
-    dispatch(userAction.REMOVE_USER())
-  }
+  // const setUser = () => {
+  //   dispatch(userAction.SET_USER({username: "chrisss", user_id: 420}))
+  // }
+  // const removeUser = () => {
+  //   dispatch(userAction.REMOVE_USER())
+  // }
+
 
   useEffect(() => {
     console.log(state)
   })
+
   return (
     <div>
-      <button onClick={setUser}>set</button>
-      <button onClick={removeUser}>remove</button>
+      <UserContext.Provider value={{state, dispatch}}>
+        <InnerApp />
+      </UserContext.Provider>
+
     </div>
   );
 }
