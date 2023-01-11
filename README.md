@@ -1,0 +1,1 @@
+This is just somepractice using useReducer with useContext before I impliment it in a bigger app.
